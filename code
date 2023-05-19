@@ -1,0 +1,63 @@
+import time
+
+# выводим приветственное сообщение
+print("Добро пожаловать в программу 'Эколог'!\n")
+time.sleep(1)
+
+# запрашиваем у пользователя количество жителей в городе
+population_size = int(input("Введите количество жителей в городе: "))
+print("-" * 50)
+time.sleep(1)
+
+# задаем стандартное количество деревьев на 1 жителя
+trees_per_person = 24
+
+# рассчитываем общее количество деревьев, необходимых для озеленения города
+total_trees = population_size * trees_per_person
+
+# запрашиваем у пользователя количество районов в городе
+num_districts = int(input("Введите количество районов в городе: "))
+print("-" * 50)
+time.sleep(1)
+
+# создаем пустой список для хранения площадей районов
+district_sizes = []
+
+# создаем пустой список для хранения количества жителей в районах
+district_populations = []
+
+# запрашиваем площади каждого района и добавляем их в список,
+# а также запрашиваем количество жителей в районе и добавляем их в другой список
+for i in range(num_districts):
+    district_size = int(input(f"Введите площадь района {i+1} в квадратных метрах: "))
+    district_population = int(input(f"Введите количество жителей в районе {i+1}: "))
+    district_sizes.append(district_size)
+    district_populations.append(district_population)
+    print("-" * 50)
+    time.sleep(1)
+
+# рассчитываем необходимое количество деревьев для каждого района
+total_district_size = sum(district_sizes)
+
+# создаем пустой список для хранения количества деревьев, необходимых для каждого района
+district_trees = []
+
+# рассчитываем необходимое количество деревьев для каждого района, учитывая количество жителей
+for i in range(num_districts):
+    trees_for_person = trees_per_person + (district_populations[i] * 2) // district_sizes[i]
+    district_tree_count = district_populations[i] * trees_for_person
+    district_trees.append(district_tree_count)
+
+# выводим результат на экран
+print("\n" + "=" * 50)
+print("Результат расчетов:")
+print("=" * 50)
+
+for i in range(num_districts):
+    print(f"Район {i+1}:")
+    print("-" * 50)
+    print(f"Площадь: {district_sizes[i]} кв.м")
+    print(f"Количество жителей: {district_populations[i]}")
+    print(f"Количество деревьев для высадки: {district_trees[i]} шт.")
+    print("=" * 50)
+    time.sleep(1)
